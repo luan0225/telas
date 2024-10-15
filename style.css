@@ -1,0 +1,244 @@
+/* Footer */
+.footer-container {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto);
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o conteúdo */
+}
+
+.footer-links {
+    list-style: none; /* Remove as bolinhas da lista */
+    padding: 0;
+    display: flex; /* Usar flexbox para alinhar horizontalmente */
+    justify-content: center; /* Centraliza os links */
+    gap: 20px; /* Espaçamento entre os links */
+    margin: 10px 0; /* Espaçamento superior e inferior */
+}
+
+.footer-links a {
+    color: var(--cor-texto); /* Cor do texto dos links */
+    text-decoration: none; /* Remove o sublinhado */
+    transition: color 0.3s; /* Transição suave para a cor */
+}
+
+.footer-links a:hover {
+    color: var(--cor-primaria); /* Muda a cor no hover */
+}
+
+
+
+
+/* Variáveis de Cores */
+:root {
+    --cor-primaria: #007BFF;
+    --cor-secundaria: #333;
+    --cor-fundo: #f8f8f8;
+    --cor-borda: #ddd;
+    --cor-texto: #fff;
+    --duracao-transicao: 0.3s; /* Duração da transição */
+}
+
+/* Estilização Geral */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--cor-secundaria);
+}
+
+.logo {
+    width: 100px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    transition: color var(--duracao-transicao);
+}
+
+.navbar a:hover {
+    color: var(--cor-primaria);
+}
+
+.container {
+    padding: 20px;
+    text-align: center; /* Centraliza o texto dentro da contêiner */
+}
+
+h1, h2, h3 {
+    color: var(--cor-secundaria);
+    margin: 20px 0; /* Espaçamento vertical para os títulos */
+    font-weight: bold; /* Títulos em negrito */
+}
+
+/* Carrossel */
+.carousel-container {
+    max-width: 100%;
+    overflow: hidden; /* Esconde qualquer parte que ultrapasse o limite do contêiner */
+}
+
+.carousel-slide {
+    display: flex; /* Usa flexbox para alinhar as imagens horizontalmente */
+    transition: transform 0.5s ease; /* Transição suave ao mudar de slide */
+}
+
+.carousel-slide img {
+    max-width: 150px; /* Reduz o tamanho das imagens */
+    height: auto; /* Mantém a proporção da imagem */
+    margin: 0 10px; /* Adiciona margem horizontal entre as imagens */
+}
+
+/* Produtos e Combos */
+.products, .combos {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os itens dentro da seção */
+}
+
+.product, .combo {
+    border: 1px solid var(--cor-borda);
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform var(--duracao-transicao), box-shadow var(--duracao-transicao);
+    flex: 1 1 220px;
+    max-width: 220px;
+    position: relative;
+}
+
+.product img, .combo img {
+    max-width: 100%;
+    height: auto;
+    transition: transform var(--duracao-transicao);
+}
+
+.product:hover img, .combo:hover img {
+    transform: scale(1.1);
+}
+
+.product:hover, .combo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.selected {
+    border: 2px solid var(--cor-primaria);
+    box-shadow: 0 4px 20px rgba(0, 123, 255, 0.5);
+    background-color: rgba(0, 123, 255, 0.1); /* Fundo azul suave */
+}
+
+/* Opções de Pagamento */
+.payment-options {
+    display: flex;
+    justify-content: center; /* Centraliza os itens */
+    gap: 10px;
+    margin-top: 20px; /* Adiciona um espaço superior */
+}
+
+.payment-option {
+    border: 1px solid var(--cor-borda);
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color var(--duracao-transicao);
+}
+
+.payment-option:hover {
+    background-color: #f0f0f0;
+}
+
+#confirmPaymentBtn {
+    display: none; /* Oculta inicialmente */
+    margin: 20px auto; /* Centraliza o botão */
+    padding: 10px 20px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto);
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--duracao-transicao), transform var(--duracao-transicao);
+    width: 200px; /* Largura fixa para o botão */
+}
+
+#confirmPaymentBtn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .products, .combos {
+        flex-direction: column; /* Coloca os itens em coluna em telas pequenas */
+        align-items: center; /* Centraliza os itens */
+    }
+
+    .product, .combo {
+        max-width: 100%; /* Permite que os produtos ocupem toda a largura em telas menores */
+    }
+
+    .payment-options {
+        flex-direction: column; /* Coloca as opções de pagamento em coluna em telas menores */
+        align-items: center; /* Centraliza os itens */
+    }
+
+    #confirmPaymentBtn {
+        display: block; /* Mostra o botão em telas pequenas */
+        width: 80%; /* Ajusta a largura do botão */
+        max-width: 300px; /* Largura máxima do botão */
+        margin: 20px auto; /* Centraliza o botão com margem superior e inferior */
+    }
+
+    .carousel-slide img {
+        max-width: 100px; /* Reduz ainda mais o tamanho das imagens em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        flex-direction: column; /* Coloca os elementos do footer em coluna em telas menores */
+        align-items: center; /* Centraliza os itens */
+    }
+
+    .footer-content {
+        text-align: center; /* Centraliza o texto do footer */
+        margin: 10px 0; /* Espaçamento vertical entre os conteúdos do footer */
+    }
+
+    .carousel-slide img {
+        max-width: 30px; /* Tamanho ainda menor para dispositivos muito pequenos */
+    }
+
+    .indicator {
+        width: 6px; /* Reduz o tamanho dos indicadores para dispositivos muito pequenos */
+        height: 6px; /* Reduz o tamanho dos indicadores para dispositivos muito pequenos */
+    }
+}

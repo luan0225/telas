@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Produtos</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilo CSS direto para facilitar a visualização */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+        }
+
+        .logo {
+            height: 50px;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .navbar li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        /* Carrossel */
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-image {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .carousel img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-button {
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .product, .combo, .plano, .payment-option {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .product.selected, .combo.selected, .plano.selected, .payment-option.selected {
+            border-color: #28a745;
+            background-color: #e9ffe9;
+            transform: scale(1.05);
+        }
+
+        #confirmPaymentBtn {
+            display: none; /* Escondido inicialmente */
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-content {
+            flex: 1;
+            margin: 10px;
+            min-width: 200px;
+        }
+
+        .footer-content h3 {
+            margin: 0 0 10px 0;
+        }
+
+        .social-media {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .social-media li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .social-media a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+
+<header>
+    <div class="header-container">
+        <img src="images/logoAL.jpg" alt="Logo" class="logo">
+        <nav class="navbar">
+            <ul>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#combos">Combos</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<body>
+    <div class="container">
+        <h1>Catálogo de Produtos</h1>
+
+        <!-- Carrossel de imagens -->
+        <div class="carousel">
+            <div class="carousel-images">
+                <div class="carousel-image">
+                    <img src="images/banner1.png" alt="Produto 1">
+                </div>
+                <div class="carousel-image">
+                    <img src="images/banner2.png" alt="Produto 2">
+                </div>
+                <div class="carousel-image">
+                    <img src="images/banner3.png" alt="Produto 3">
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <button class="carousel-button" id="prevBtn">&#10094;</button>
+                <button class="carousel-button" id="nextBtn">&#10095;</button>
+            </div>
+        </div>
+
+        <div class="products">
+            <div class="product" onclick="showPlans(this, 'Netflix')">
+                <img src="images/logo1.png" alt="Logo Netflix" />
+                <h3>Netflix</h3>
+                <p>R$ 21,00/mês</p>
+            </div>
+            <div class="product" onclick="showPlans(this, 'Prime Video')">
+                <img src="images/logo2.png" alt="Logo Prime Video" />
+                <h3>Prime Video</h3>
+                <p>R$ 10,00/mês</p>
+            </div>
+            <div class="product" onclick="showPlans(this, 'Disney+')">
+                <img src="images/logo3.jpg" alt="Logo Disney+" />
+                <h3>Disney+</h3>
+                <p>R$ 15,00/mês</p>
+            </div>
+            <div class="product" onclick="showPlans(this, 'Globo Play')">
+                <img src="images/logo4.png" alt="Logo Globo Play" />
+                <h3>Globo Play</h3>
+                <p>R$ 18,00/mês</p>
+            </div>
+        </div>
+
+        <h2>Combos</h2>
+        <div class="combos">
+            <div class="combo" onclick="selectCombo(this, 'Combo 1')">
+                <img src="images/combo1.png" alt="Combo Netflix + Prime Video" />
+                <h3>Combo Netflix + Prime Video</h3>
+                <p>R$ 29,00/mês</p>
+            </div>
+            <div class="combo" onclick="selectCombo(this, 'Combo 2')">
+                <img src="images/combo2.png" alt="Combo Disney+ + Globo Play" />
+                <h3>Combo Disney+ + Globo Play</h3>
+                <p>R$ 30,00/mês</p>
+            </div>
+            <div class="combo" onclick="selectCombo(this, 'Combo 3')">
+                <img src="images/combo3.png" alt="Combo Netflix + Disney+ + Prime Video" />
+                <h3>Combo Netflix + Disney+ + Prime Video</h3>
+                <p>R$ 40,00/mês</p>
+            </div>
+        </div>
+
+        <div class="planos">
+            <h2>Escolha seu plano:</h2>
+            <div class="plano" onclick="selectPlano(this)">
+                <h3>Plano de 1 mês</h3>
+                <p>1 tela para 1 dispositivo.</p>
+            </div>
+            <div class="plano" onclick="selectPlano(this)">
+                <h3>Plano de 2 meses</h3>
+                <p>1 tela para 1 dispositivo.</p>
+            </div>
+            <div class="plano" onclick="selectPlano(this)">
+                <h3>Plano de 3 meses</h3>
+                <p>2 telas para 2 dispositivos.</p>
+            </div>
+        </div>
+
+        <h2>Forma de Pagamento</h2>
+        <div class="payment-options">
+            <div class="payment-option" onclick="selectPayment(this, 'WhatsApp')">
+                <input type="radio" name="payment" value="whatsapp" hidden>
+                Pagamento via WhatsApp
+            </div>
+        </div>
+        <button type="button" id="confirmPaymentBtn">Confirmar Pagamento</button>
+    </div>
+
+    
+    <script>
+        function confirmPayment() {
+    const selectedProducts = Array.from(document.querySelectorAll('.product.selected')).map(el => el.querySelector('h3').innerText);
+    const selectedCombos = Array.from(document.querySelectorAll('.combo.selected')).map(el => el.querySelector('h3').innerText);
+    const selectedPlans = Array.from(document.querySelectorAll('.plano.selected')).map(el => el.querySelector('h3').innerText);
+    
+    // Monta a mensagem a ser enviada
+    let message = "Olá, gostaria de solicitar os seguintes produtos:\n";
+    
+    if (selectedProducts.length) {
+        message += "Produtos:\n" + selectedProducts.join("\n") + "\n";
+    }
+    if (selectedCombos.length) {
+        message += "Combos:\n" + selectedCombos.join("\n") + "\n";
+    }
+    if (selectedPlans.length) {
+        message += "Planos:\n" + selectedPlans.join("\n") + "\n";
+    }
+
+    // Cria o link do WhatsApp com a mensagem
+    const whatsappLink = `https://wa.me/5592994289392?text=${encodeURIComponent(message)}`;
+    
+    // Redireciona para o WhatsApp
+    window.open(whatsappLink, '_blank');
+}
+
+// Atualiza a função para o botão de confirmação
+document.getElementById('confirmPaymentBtn').onclick = confirmPayment;
+
+        const carouselImages = document.querySelector('.carousel-images');
+        const totalImages = document.querySelectorAll('.carousel-image').length;
+        let currentIndex = 0;
+        const slideInterval = 3000; // Tempo em milissegundos entre as transições
+
+        function updateCarousel() {
+            const offset = -currentIndex * 100; // Calcula o deslocamento
+            carouselImages.style.transform = `translateX(${offset}%)`; // Aplica o deslocamento
+        }
+
+        document.getElementById('nextBtn').onclick = function() {
+            currentIndex = (currentIndex + 1) % totalImages; // Avança para a próxima imagem
+            updateCarousel();
+        };
+
+        document.getElementById('prevBtn').onclick = function() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages; // Volta para a imagem anterior
+            updateCarousel();
+        };
+
+        setInterval(function() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateCarousel();
+        }, slideInterval);
+
+        function showPlans(selectedProduct, productName) {
+            const planos = document.querySelector('.planos');
+            planos.style.display = 'block'; // Mostra a seção de planos
+
+            const selectedElements = document.querySelectorAll('.product.selected');
+            selectedElements.forEach(el => el.classList.remove('selected'));
+            selectedProduct.classList.add('selected');
+        }
+
+        function selectCombo(selectedCombo) {
+            const selectedCombos = document.querySelectorAll('.combo.selected');
+            selectedCombos.forEach(el => el.classList.remove('selected'));
+            selectedCombo.classList.add('selected');
+        }
+
+        function selectPlano(selectedPlano) {
+            const selectedPlanos = document.querySelectorAll('.plano.selected');
+            selectedPlanos.forEach(el => el.classList.remove('selected'));
+            selectedPlano.classList.add('selected');
+        }
+
+        function selectPayment(selectedPayment, method) {
+            const selectedPayments = document.querySelectorAll('.payment-option.selected');
+            selectedPayments.forEach(el => el.classList.remove('selected'));
+            selectedPayment.classList.add('selected');
+
+            const confirmBtn = document.getElementById('confirmPaymentBtn');
+            confirmBtn.style.display = 'block'; // Mostra o botão de confirmação
+        }
+    </script>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <h3>Sobre Nós</h3>
+                <p>melhores preços de telas de strem da cidade .</p>
+            </div>
+            <div class="footer-content">
+                <h3>Contato</h3>
+                <ul>
+                    <li>Email: lincolnluan109@gmail.com</li>
+                    <li>Telefone: (92) 994289392</li>
+                </ul>
+            </div>
+            <div class="footer-content">
+                <h3>Redes Sociais</h3>
+                <ul class="social-media">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
